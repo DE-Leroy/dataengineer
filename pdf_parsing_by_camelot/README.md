@@ -4,26 +4,26 @@
 import camelot
 
 def extract_tables_from_pdf_camelot(pdf_path):
-    """Извлекает таблицы из PDF-файла, используя camelot.
+    """Extract tabular from PDF-files, using camelot.
 
     Args:
-        pdf_path (str): Путь к PDF-файлу.
+        pdf_path (str): Path to PDF-file.
 
     Returns:
-        list: Список объектов Table из camelot.
+        list: List of objects Table in camelot.
     """
     try:
         tables = camelot.read_pdf(pdf_path, pages='all')
         return tables
     except FileNotFoundError:
-        print(f"Ошибка: Файл не найден по пути '{pdf_path}'.")
+        print(f"Error: There is not file on path '{pdf_path}'.")
         return []
     except Exception as e:
-        print(f"Произошла ошибка при извлечении таблиц: {e}")
+        print(f"The error occurred: {e}")
         return []
 
 if __name__ == "__main__":
-    pdf_file_path = '2016.pdf'  # Замените на путь к вашему PDF-файлу
+    pdf_file_path = '2016.pdf'  # Change to yout file path
     extracted_tables = extract_tables_from_pdf_camelot(pdf_file_path)
 ```
 
@@ -91,7 +91,6 @@ for page in extracted_tables:
         row_list.append(df[i].iloc[16])
         row_list.append(df[i].iloc[31])
         row_list.append(pdf_file_path.split('.')[0])
-        # print('\n'.join(row_list))
 
         df_answer = pd.concat([df_answer, pd.DataFrame([row_list], columns=columns)])
 ```
